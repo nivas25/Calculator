@@ -4,7 +4,7 @@ Students start with 2 passing tests, then add more
 """
 import pytest
 # Added 'multiply' to the import list
-from src.calculator import add, divide, subtract, multiply
+from src.calculator import add, divide, subtract, multiply, power, square_root
 
 class TestBasicOperations:
     """Test basic arithmetic operations"""
@@ -59,3 +59,28 @@ class TestMultiplyDivide:
         # After
         with pytest.raises(ValueError, match="Cannot divide 10 by zero"):
             divide(10, 0)
+
+
+class TestAdvancedOperations: 
+    """Test power and square root operations""" 
+     
+    def test_power_positive_numbers(self): 
+        """Test power with positive numbers""" 
+        assert power(2, 3) == 8 
+        assert power(5, 2) == 25 
+     
+    def test_power_zero_exponent(self): 
+        """Test power with zero exponent""" 
+        assert power(5, 0) == 1 
+        assert power(0, 0) == 1 
+     
+    def test_square_root_positive_numbers(self): 
+        """Test square root of positive numbers""" 
+        assert square_root(4) == 2 
+        assert square_root(9) == 3 
+        assert square_root(16) == 4 
+     
+    def test_square_root_negative_raises_error(self): 
+        """Test that square root of negative raises ValueError"""
+        with pytest.raises(ValueError, match="Cannot calculate square root of negative"): 
+            square_root(-4)
